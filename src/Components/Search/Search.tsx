@@ -1,20 +1,18 @@
 import React from 'react';
-import { useState } from 'react';
 
-interface Props { }
+interface Props {
+    search: string | undefined;
+    onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
-const Search: React.FC<Props> = (props: Props): JSX.Element => {
-    const [search, setSearch] = useState<string>("");
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearch(e.target.value);
-        console.log(e);
-    }
-
-    const onClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        console.log(e);
-    }
-
+/**
+ * Search component.
+ * 
+ * Dumb component, that gets its props provided by higher level 
+ * smart components.
+ */
+const Search: React.FC<Props> = ({search, onClick, handleChange}: Props): JSX.Element => {
     return (
         <div>
             <p>{search}</p>
