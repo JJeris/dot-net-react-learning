@@ -18,9 +18,8 @@ function App() {
 	const [search, setSearch] = useState<string>("");
 	// The users result described by the value withing search.
 	const [searchResult, setSearchResult] = useState<CompanySearch[]>([]);
-	
+	// The users portfolio stock list.
 	const [portfolioValues, setPortfolioValues] = useState<string[]>([]);
-	
 	// Server error.
 	const [serverError, setServerError] = useState<string | null>(null);
 	
@@ -71,7 +70,6 @@ function App() {
 		];
 		setPortfolioValues(updatedPortfolio);
 	}
-
 
 	/**
 	 * 
