@@ -14,7 +14,6 @@ export const searchCompanies = async (query: string) => {
             `https://financialmodelingprep.com/api/v3/search?query=${query}&apikey=${import.meta.env.VITE_APP_API_KEY}`
             // `https://financialmodelingprep.com/api/v3/search-ticker?query=${query}&limit=10&exchange=NASDAQ&apikey=${import.meta.env.VITE_APP_API_KEY}`
         );
-        console.log(data);
         return data;
     } catch (err) {
         if (axios.isAxiosError(err)) {

@@ -2,8 +2,8 @@ import React from 'react';
 
 interface Props {
     search: string | undefined;
-    onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onSearchSubmit: (e: React.MouseEvent<HTMLFormElement, MouseEvent>) => void;
+    handleSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 /**
@@ -12,27 +12,18 @@ interface Props {
  * Dumb component, that gets its props provided by higher level 
  * smart components.
  */
-const Search: React.FC<Props> = ({search, onClick, handleChange}: Props): JSX.Element => {
+const Search: React.FC<Props> = ({search, onSearchSubmit, handleSearchChange}: Props): JSX.Element => {
     return (
-        <div>
-            <p>{search}</p>
-            <input
-                title='input search'
-                value={search}
-                onChange={
-                    (e) => handleChange(e)
-                }
+        <>
+            <form 
+                onSubmit={onSearchSubmit}
             >
-            </input>
-            <button
-                type='button'
-                onClick={
-                    (e) => onClick(e)
-                }
-            >
-                Button
-            </button>
-        </div>
+                <input title='search input' value={search} onChange={handleSearchChange} />
+
+
+            </form>
+        </>
+
     );
 }
 

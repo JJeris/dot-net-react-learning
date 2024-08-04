@@ -1,3 +1,4 @@
+import React from 'react';
 import { CompanySearch } from "../../company";
 import "./Card.css";
 import AddPortfolio from '../Portfolio/Portfolio';
@@ -5,9 +6,10 @@ import AddPortfolio from '../Portfolio/Portfolio';
 interface Props {
     id: string;
     searchResult: CompanySearch; // Note, not an array.
+    onPortfolioCreate: (e: React.MouseEvent<HTMLFormElement, MouseEvent>) => void;
 }
 
-const Card: React.FC<Props> = ({id, searchResult}: Props) : JSX.Element => {
+const Card: React.FC<Props> = ({ id, searchResult, onPortfolioCreate }: Props): JSX.Element => {
     return (
         <div className="card" id={id}>
             <img alt={`Company logo: ${searchResult.name}`} />
@@ -18,11 +20,12 @@ const Card: React.FC<Props> = ({id, searchResult}: Props) : JSX.Element => {
             <p className="info">
                 {searchResult.exchangeShortName} - {searchResult.stockExchange}
             </p>
-            <span>
-                <AddPortfolio />
-            </span>
+            <AddPortfolio 
+                onPortfolioCreate={onPortfolioCreate} 
+                symbol={searchResult.symbol} 
+            />
         </div>
-    )
-}
+    );
+};
 
 export default Card

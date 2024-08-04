@@ -23,11 +23,12 @@ function App() {
 	 * @param e 
 	 */
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const onClick = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+	const onSearchSubmit = async (e: React.MouseEvent<HTMLFormElement, MouseEvent>) => {
+		e.preventDefault();
 		const result = await searchCompanies(search);
 		if (typeof result === "string") {
 			setServerError(result);
-			console.log(serverError);
+
 		} else if (Array.isArray(result.data)) {
 			setSearchResult(result.data);
 		}
@@ -38,13 +39,22 @@ function App() {
 	 * ChangeEvent.
 	 * @param e 
 	 */
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+	const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setSearch(e.target.value);
+	}
+
+	/**
+	 * 
+	 * @param e 
+	 */
+	const onPortfolioCreate = (e: React.MouseEvent<HTMLFormElement, MouseEvent>) => {
+		e.preventDefault();
+		console.log(e);
 	}
 
 	// Use useEffect to log the updated searchResult state
 	useEffect(() => {
-		console.log(searchResult);
+		// console.log(searchResult);
 	}, [searchResult]);
 
 	return (
@@ -56,11 +66,12 @@ function App() {
 			{serverError && <h1>{serverError}</h1>}
 			<Search
 				search={search}
-				onClick={onClick}
-				handleChange={handleChange}
+				onSearchSubmit={onSearchSubmit}
+				handleSearchChange={handleSearchChange}
 			/>
 			<CardList
 				searchResult={searchResult}
+				onPortfolioCreate={onPortfolioCreate}
 			/>
 		</div>
 	)
