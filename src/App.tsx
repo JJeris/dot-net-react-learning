@@ -80,7 +80,6 @@ function App() {
 		e: any
 	) => {
 		e.preventDefault();
-		console.log(e);
 
 		const removed = portfolioValues.filter((value) => {
 			return value !== e.target[0].value;
