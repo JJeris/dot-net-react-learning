@@ -1,0 +1,31 @@
+import React from 'react'
+
+interface Props {
+    portfolioValue: string;
+    onPortfolioDelete: (e: React.SyntheticEvent) => void;
+}
+
+const DeletePortfolio = ({portfolioValue, onPortfolioDelete}: Props) => {
+  return (
+    <div>
+        <form 
+            onSubmit={onPortfolioDelete}
+        >
+            <input 
+                readOnly={true} 
+                hidden={true} 
+                value={portfolioValue} 
+            />
+            <button
+                type='submit'        
+            >
+                X
+            </button>
+        </form>
+    </div>
+    
+    
+  )
+}
+
+export default DeletePortfolio

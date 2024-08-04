@@ -2,7 +2,7 @@ import React from 'react';
 import { CompanySearch } from "../../company";
 import Card from "../Card/Card";
 import "./CardList.css";
-// import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 
 interface Props {
     searchResult: CompanySearch[];
@@ -16,7 +16,7 @@ const CardList: React.FC<Props> = ({ searchResult, onPortfolioCreate }: Props) :
                 searchResult.map((result) => (
                     <Card 
                         id={result.symbol}
-                        key={result.symbol}
+                        key={uuidv4()}
                         searchResult={result}
                         onPortfolioCreate={onPortfolioCreate}
                     />

@@ -1,7 +1,7 @@
 import React from 'react';
 import { CompanySearch } from "../../company";
 import "./Card.css";
-import AddPortfolio from '../Portfolio/Portfolio';
+import AddPortfolio from '../AddPortfolio/AddPortfolio';
 
 interface Props {
     id: string;

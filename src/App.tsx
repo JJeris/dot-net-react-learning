@@ -48,6 +48,7 @@ function App() {
 	}
 
 	/**
+	 * Add a stock to the portfolio.
 	 * 
 	 * @param e 
 	 */
@@ -68,6 +69,25 @@ function App() {
 		setPortfolioValues(updatedPortfolio);
 	}
 
+
+	/**
+	 * 
+	 * @param e 
+	 */
+	const onPortfolioDelete = (
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		e: any
+	) => {
+		e.preventDefault();
+		console.log(e);
+
+		const removed = portfolioValues.filter((value) => {
+			return value !== e.target[0].value;
+
+		})
+		setPortfolioValues(removed);
+	}
+
 	// Use useEffect to log the updated searchResult state
 	useEffect(() => {
 		// console.log(searchResult);
@@ -85,7 +105,10 @@ function App() {
 				onSearchSubmit={onSearchSubmit}
 				handleSearchChange={handleSearchChange}
 			/>
-			<ListPortfolio portfolioValues={portfolioValues} />
+			<ListPortfolio 
+				portfolioValues={portfolioValues} 
+				onPortfolioDelete={onPortfolioDelete}	
+			/>
 			<CardList
 				searchResult={searchResult}
 				onPortfolioCreate={onPortfolioCreate}
