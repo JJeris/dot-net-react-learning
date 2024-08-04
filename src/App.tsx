@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import './index.css';
 import CardList from './Components/CardList/CardList';
 import Search from './Components/Search/Search';
 import { CompanySearch } from './company';
 import { searchCompanies } from './api';
-import ListPortfolio from './Components/ListPortfolio/ListPortfolio';
+import ListPortfolio from './Components/Portfolio/ListPortfolio/ListPortfolio';
+import Navbar from './Components/Navbar/Navbar';
+import Hero from './Components/Hero/Hero';
 
 /**
  * Main App component.
@@ -95,6 +98,8 @@ function App() {
 
 	return (
 		<div className="App">
+			<Navbar />
+			<Hero />
 			{/* 
 			Use AND here, not the ternary operator, because we don't want to have
 			additional conditional branches. 
