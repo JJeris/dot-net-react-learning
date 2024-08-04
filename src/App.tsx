@@ -4,6 +4,7 @@ import CardList from './Components/CardList/CardList';
 import Search from './Components/Search/Search';
 import { CompanySearch } from './company';
 import { searchCompanies } from './api';
+import ListPortfolio from './Components/ListPortfolio/ListPortfolio';
 
 /**
  * Main App component.
@@ -14,6 +15,9 @@ function App() {
 	const [search, setSearch] = useState<string>("");
 	// The users result described by the value withing search.
 	const [searchResult, setSearchResult] = useState<CompanySearch[]>([]);
+	
+	const [portfolioValues, setPortfolioValues] = useState<string[]>([]);
+	
 	// Server error.
 	const [serverError, setServerError] = useState<string | null>(null);
 	
@@ -47,9 +51,21 @@ function App() {
 	 * 
 	 * @param e 
 	 */
-	const onPortfolioCreate = (e: React.MouseEvent<HTMLFormElement, MouseEvent>) => {
+	const onPortfolioCreate = (
+		// e: React.MouseEvent<HTMLFormElement, MouseEvent>
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		e: any
+	) => { 
 		e.preventDefault();
-		console.log(e);
+		const existsInList = portfolioValues.find((value) => value === e.target[0].value);
+		if (existsInList) {
+			return undefined;
+		}
+		const updatedPortfolio = [
+			...portfolioValues,
+			e.target[0].value
+		];
+		setPortfolioValues(updatedPortfolio);
 	}
 
 	// Use useEffect to log the updated searchResult state
@@ -69,6 +85,7 @@ function App() {
 				onSearchSubmit={onSearchSubmit}
 				handleSearchChange={handleSearchChange}
 			/>
+			<ListPortfolio portfolioValues={portfolioValues} />
 			<CardList
 				searchResult={searchResult}
 				onPortfolioCreate={onPortfolioCreate}
