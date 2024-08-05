@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CompanySearch, CompanyProfile } from './company';
+import { CompanySearch, CompanyProfile, CompanyKeyMetrics } from './company';
 
 /**
  * An array of CompanySearch instances.
@@ -43,6 +43,29 @@ export const getCompanyProfile = async (query: string) => {
         const data = await axios.get<CompanyProfile[]>(
             `https://financialmodelingprep.com/api/v3/profile/${query}?apikey=${import.meta.env.VITE_APP_API_KEY}`
         );
+        return data;
+    } catch (err) {
+        if (axios.isAxiosError(err)) {
+            console.log(`error message: ${err.message}`);
+            return err.message;
+        } else {
+            console.error(`unexpected error: ${err}`);
+            return "An unexpected error has occurred.";
+        }
+    }
+}
+
+/**
+ * Gets the 
+ * @param query \
+ * @returns 
+ */
+export const getKeyMetrics = async (query: string) => {
+    try {
+        const data = await axios.get<CompanyKeyMetrics[]>(
+            `https://financialmodelingprep.com/api/v3/key-metrics-ttm/${query}?apikey=${import.meta.env.VITE_APP_API_KEY}`
+        );
+        console.log(data);
         return data;
     } catch (err) {
         if (axios.isAxiosError(err)) {
