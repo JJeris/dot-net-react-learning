@@ -1,5 +1,5 @@
 import React from 'react'
-import { testIncomeStatementData } from '../../Pages/DesignPage/testData'
+import { testIncomeStatementData } from './testData'
 import { v4 as uuidv4 } from 'uuid';
 
 const data = testIncomeStatementData;
