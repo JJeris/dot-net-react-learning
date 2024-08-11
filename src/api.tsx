@@ -56,7 +56,7 @@ export const getCompanyProfile = async (query: string) => {
 }
 
 /**
- * Gets the 
+ * Gets the key metrics.
  * @param query \
  * @returns 
  */
