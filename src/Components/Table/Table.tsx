@@ -1,12 +1,11 @@
 import React from 'react'
 import { v4 as uuidv4 } from 'uuid';
-import { CompanyIncomeStatement } from '../../company';
-
 
 interface Props {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	config: any;
-	data: CompanyIncomeStatement[];
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	data: any;
  }
 
  
