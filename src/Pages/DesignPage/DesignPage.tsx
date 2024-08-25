@@ -32,7 +32,10 @@ const DesignPage = (props: Props) => {
 				data={testIncomeStatementData} 
 				config={tableConfig}
 			/>
-			<Table />
+			<Table
+				config={tableConfig}
+				data={testIncomeStatementData}
+			/>
 
 		</>
 	)

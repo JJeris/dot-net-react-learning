@@ -1,35 +1,44 @@
 import React from 'react'
-import { testIncomeStatementData } from './testData'
 import { v4 as uuidv4 } from 'uuid';
+import { CompanyIncomeStatement } from '../../company';
 
-const data = testIncomeStatementData;
 
-interface Props { }
+interface Props {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	config: any;
+	data: CompanyIncomeStatement[];
+ }
 
-type Company = (typeof data)[0];
+ 
+// Test data.
+// const data = testIncomeStatementData;
 
-const configs = [
-	{
-		label: "Year",
-		render: (company: Company) => company.acceptedDate
-	},
-	{
-		label: "Cost of Revenue",
-		render: (company: Company) => company.costOfRevenue
-	}
-];
+// type Company = (typeof data)[0];
+
+// const configs = [
+// 	{
+// 		label: "Year",
+// 		render: (company: Company) => company.acceptedDate
+// 	},
+// 	{
+// 		label: "Cost of Revenue",
+// 		render: (company: Company) => company.costOfRevenue
+// 	}
+// ];
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const Table = (props: Props) => {
-	const renderedRows = data.map((company) => {
+const Table = ({config, data}: Props) => {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const renderedRows = data.map((company: any) => {
 		return (
 			<tr
 				key={uuidv4()}
 			>
-				{configs.map((val: any) => {
+				{/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+				{config.map((val: any) => {
 					return (
 						<td
-							className='p-4 whitespace-nowrap text-sm font-normal text-gray-900'
+							className='p-3'
 							key={uuidv4()}
 						>
 							{val.render(company)}
@@ -40,7 +49,8 @@ const Table = (props: Props) => {
 		)
 	});
 
-	const renderHeaders = configs.map((config: any) => {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const renderHeaders = config.map((config: any) => {
 		return (
 			<th
 				className='p-4 text-left text-xs font-medium text-fray-500 uppercase tracking-wider'
@@ -51,7 +61,7 @@ const Table = (props: Props) => {
 		)
 	})
 	return (
-		<div
+		<table
 			className='bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8'
 		>
 			<thead
@@ -62,7 +72,7 @@ const Table = (props: Props) => {
 			<tbody>
 				{renderedRows}
 			</tbody>
-		</div>
+		</table>
 	)
 }
 
