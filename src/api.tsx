@@ -114,3 +114,21 @@ export const getBalanceSheet = async (query: string) => {
         }
     }
 }
+
+export const getCashflowStatement = async (query: string) => {
+    try {
+        const data = await axios.get<CompanyBalanceSheet[]>(
+            `https://financialmodelingprep.com/api/v3/cash-flow-statement/${query}?period=annual&apikey=${import.meta.env.VITE_APP_API_KEY}`
+        );
+        console.log(data);
+        return data;
+    } catch (err) {
+        if (axios.isAxiosError(err)) {
+            console.log(`error message: ${err.message}`);
+            return err.message;
+        } else {
+            console.error(`unexpected error: ${err}`);
+            return "An unexpected error has occurred.";
+        }
+    }
+}

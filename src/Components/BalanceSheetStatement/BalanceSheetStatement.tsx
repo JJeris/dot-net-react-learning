@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { CompanyBalanceSheet } from '../../company';
-import { useOutletContext } from 'react-router';
+import { useOutletContext } from 'react-router-dom';
 import { getBalanceSheet } from '../../api';
 import RatioList from '../RatioList/RatioList';
 
